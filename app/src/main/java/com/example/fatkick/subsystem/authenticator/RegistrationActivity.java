@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.example.fatkick.R;
 import com.example.fatkick.subsystem.main.MyCallBack;
+import com.example.fatkick.subsystem.storage.UserStorage;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -28,7 +29,7 @@ public class RegistrationActivity extends AppCompatActivity {
     private Button btSignup;
     private User user;
     private Authenticator authenticator;
-//    private UserStorage userStorage;
+    private UserStorage userStorage;
     private final Calendar myCalendar = Calendar.getInstance();
 
     @Override
@@ -56,7 +57,7 @@ public class RegistrationActivity extends AppCompatActivity {
                 if (validate()){
 
                     authenticator = new Authenticator(user);
-//                    userStorage = new UserStorage(user);
+                    userStorage = new UserStorage(user);
 
                     authenticator.createUserAccount(new MyCallBack() {
                         @Override
@@ -64,7 +65,7 @@ public class RegistrationActivity extends AppCompatActivity {
 
                             if(value.equals("Verification has been sent")) {
                                 Toast.makeText(RegistrationActivity.this, value, Toast.LENGTH_SHORT).show();
-//                                userStorage.storeUser();
+                                userStorage.storeUser();
 
                                 finish();
                                 Intent intent = new Intent(RegistrationActivity.this, SignUpLoginActivity.class);
@@ -131,12 +132,12 @@ public class RegistrationActivity extends AppCompatActivity {
     private Boolean validate() {
         Boolean result = false;
 
-        String name = etUsername.getText().toString();
-        String user_password = etPassword.getText().toString();
-        String user_email = etEmail.getText().toString();
-        String user_DOB = etDOB.getText().toString();
-        String user_weight = etWeight.getText().toString();
-        String user_height = etHeight.getText().toString();
+        String name = etUsername.getText().toString().trim();
+        String user_password = etPassword.getText().toString().trim();
+        String user_email = etEmail.getText().toString().trim();
+        String user_DOB = etDOB.getText().toString().trim();
+        String user_weight = etWeight.getText().toString().trim();
+        String user_height = etHeight.getText().toString().trim();
 
 
         if(name.isEmpty() || user_password.isEmpty() || user_email.isEmpty() || user_DOB.isEmpty() || user_weight.isEmpty() || user_height.isEmpty()){

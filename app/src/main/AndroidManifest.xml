@@ -10,6 +10,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FatKick">
         <activity
+            android:name=".subsystem.authenticator.ShowProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".subsystem.goal_setting.ShowMyGoalActivity"
+            android:exported="false" />
+        <activity
+            android:name=".subsystem.goal_setting.FinalGoalActivity"
+            android:exported="false" />
+        <activity
             android:name=".subsystem.authenticator.RegistrationActivity"
             android:exported="false" />
         <activity

@@ -16,8 +16,12 @@ import android.widget.Toast;
 
 import com.example.fatkick.R;
 import com.example.fatkick.subsystem.authenticator.Authenticator;
+import com.example.fatkick.subsystem.authenticator.ShowProfileActivity;
 import com.example.fatkick.subsystem.authenticator.SignUpLoginActivity;
+import com.example.fatkick.subsystem.goal_setting.ShowMyGoalActivity;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -111,8 +115,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         {
             case R.id.finalGoalMenuItem:
                 //view final goal
-//                Intent intent = new Intent(this, ShowMyGoalActivity.class);
-//                startActivity(intent);
+                Intent intent = new Intent(this, ShowMyGoalActivity.class);
+                startActivity(intent);
                 break;
 
             case R.id.logoutMenuItem:
@@ -125,8 +129,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
 
             case R.id.profileMenuItem:
-//                Intent intent2 = new Intent(this, ShowProfileActivity.class);
-//                startActivity(intent2);
+                Intent intent2 = new Intent(this, ShowProfileActivity.class);
+                startActivity(intent2);
                 break;
         }
         drawerLayout.closeDrawer(GravityCompat.START);
