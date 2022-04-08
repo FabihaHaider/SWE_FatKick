@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<group android:checkableBehavior="single">
+
+    <item
+        android:id="@+id/finalGoalMenuItem"
+        android:title="My Final Goal"
+        android:icon="@drawable/final_goal_icon"
+        />
+
+</group>
+
+
+<item android:title="Profile">
+
+    <menu>
+        <group android:checkableBehavior="single">
+            <item
+                android:id="@+id/profileMenuItem"
+                android:title="Profile"
+                android:icon="@drawable/person"
+                />
+
+            <item
+                android:id="@+id/logoutMenuItem"
+                android:title="Logout"
+                android:icon="@drawable/person"
+                />
+        </group>
+    </menu>
+</item>
+</menu>

@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">fatKick</string>
+    <string name="open_navigation_drawer">Open Navigation Drawer</string>
+    <string name="close_navigation_drawer">Close Navigation Drawer</string>
+    <string name="title_activity_final_goal">FinalGoalActivity</string>
+    <string name="Date">Date</string>
+    <string name="BMI">BMI</string>
+    <string name="Weight_in_kg">Weight(in kg)</string>
+    <string name="Height_in_cm">Height(in cm)</string>
+    <string name="save_goal">Save Goal</string>
+    <string name="safe_goal">Safe Goal</string>
+    <string name="suggest_goal">Suggest Goal</string>
 </resources>
