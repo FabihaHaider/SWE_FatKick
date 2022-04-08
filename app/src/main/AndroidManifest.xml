@@ -10,7 +10,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FatKick">
         <activity
-            android:name=".main.MainActivity"
+            android:name=".subsystem.authenticator.RegistrationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".subsystem.authenticator.ResetPasswordActivity"
+            android:exported="false" />
+        <activity
+            android:name=".subsystem.authenticator.SignUpLoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".subsystem.main.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
