@@ -13,6 +13,7 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.example.fatkick.R;
+import com.example.fatkick.subsystem.goal_setting.FinalGoalActivity;
 import com.example.fatkick.subsystem.main.MainActivity;
 import com.example.fatkick.subsystem.main.MyCallBack;
 
@@ -32,9 +33,6 @@ public class SignUpLoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sign_up_login);
 
 
-        if(isFirstTime())
-            FirstTime = true;
-
         bindUI();
 
         handler.postDelayed(runnable, 2000);
@@ -42,22 +40,6 @@ public class SignUpLoginActivity extends AppCompatActivity {
         btLogin.setOnClickListener(getBtLogin_OnCLickListener());
         btSignUp.setOnClickListener(getBtSignUp_OnClickListener());
         btResetPass.setOnClickListener(getBtResetPass_OnClicklistener());
-    }
-
-    private boolean isFirstTime() {
-        SharedPreferences settings = getSharedPreferences("MyPrefs", 0);
-
-        if (settings.getBoolean("is_first_time", true)) {
-            //the app is being launched for first time, do something
-            // first time task
-            // record the fact that the app has been started at least once
-            settings.edit().putBoolean("is_first_time", false).commit();
-            return true;
-        }
-        else
-        {
-            return false;
-        }
     }
 
 
@@ -90,6 +72,9 @@ public class SignUpLoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if(validate())
                 {
+                    if(isFirstTime())
+                        FirstTime = true;
+
                     authenticator.LoginUser(user_email, user_password, new MyCallBack() {
                         @Override
                         public void onCallback(String value) {
@@ -101,10 +86,10 @@ public class SignUpLoginActivity extends AppCompatActivity {
                                 finish();
 
                                 Class SecondClass = MainActivity.class;
-//                                if(FirstTime)
-//                                {
-//                                    SecondClass = FinalGoalActivity.class;
-//                                }
+                                if(FirstTime)
+                                {
+                                    SecondClass = FinalGoalActivity.class;
+                                }
                                 Intent intent = new Intent(SignUpLoginActivity.this, SecondClass).putExtra("FirstTime", FirstTime);
                                 startActivity(intent);
                             }
@@ -116,6 +101,24 @@ public class SignUpLoginActivity extends AppCompatActivity {
         };
 
         return btLogin_OnClicListener;
+    }
+
+    private boolean isFirstTime() {
+        SharedPreferences settings = getSharedPreferences("MyPrefs", 0);
+
+        String email = etEmail.getText().toString().trim();
+
+        if (settings.getBoolean(email, true)) {
+            //the app is being launched for first time, do something
+            // first time task
+            // record the fact that the app has been started at least once
+            settings.edit().putBoolean(email, false).commit();
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     private void bindUI() {
@@ -151,8 +154,8 @@ public class SignUpLoginActivity extends AppCompatActivity {
     private Boolean validate() {
         Boolean result = false;
 
-        user_password = etPassword.getText().toString();
-        user_email = etEmail.getText().toString();
+        user_password = etPassword.getText().toString().trim();
+        user_email = etEmail.getText().toString().trim();
 
 
         if(user_password.isEmpty() || user_email.isEmpty()){
