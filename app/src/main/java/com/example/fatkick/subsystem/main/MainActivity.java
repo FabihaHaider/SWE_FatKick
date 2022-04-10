@@ -119,6 +119,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(intent);
                 break;
 
+
+            case R.id.viewActivityMenuItem:
+                //view final goal
+                Intent intent3 = new Intent(this, ShowDailyActivity.class);
+                startActivity(intent3);
+                break;
+
+
+
+
             case R.id.logoutMenuItem:
                 //logout
                 Toast.makeText(this, "Logged out", Toast.LENGTH_SHORT).show();
