@@ -41,9 +41,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         isOnlineUser();
 
-        if(isFirstTime())
-            authenticator.logout();
-
 
         navigationView.bringToFront();
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open_navigation_drawer, R.string.close_navigation_drawer);
@@ -54,25 +51,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
-    private boolean isFirstTime() {
-        SharedPreferences settings = getSharedPreferences("MyPrefs", 0);
-
-        if (settings.getBoolean("is_first_time", true)) {
-            //the app is being launched for first time, do something
-            // first time task
-            // record the fact that the app has been started at least once
-            settings.edit().putBoolean("is_first_time", false).commit();
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
 
     private void isOnlineUser() {
         if(! authenticator.isActiveUser())
         {
+            authenticator.logout();
             Log.i("main activity", "onStart: user not active" );
             Intent intent = new Intent(MainActivity.this, SignUpLoginActivity.class);
             startActivity(intent);

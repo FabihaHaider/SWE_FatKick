@@ -32,7 +32,7 @@ public class GoalStorage {
         databaseReference = FirebaseDatabase.getInstance().getReference().child("FinalGoal");
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
+
     public void storeGoal(MyCallBack myCallBack)
     {
         FinalGoal finalGoal = new FinalGoal(user.getEmail(),  this.finalGoal.getWeight(), this.finalGoal.getDeadline().toString());
@@ -74,6 +74,34 @@ public class GoalStorage {
 
                             goalInterface.onCallBack(finalGoal);
 
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+
+    public void isGoalExists(String userEmail, MyCallBack myCallBack)
+    {
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot dataSnapshot: snapshot.getChildren()) {
+
+                    if (snapshot.exists()) {
+                        FinalGoal finalGoal = new FinalGoal();
+                        myCallBack.onCallback("false");
+                        String email = dataSnapshot.child("userEmail").getValue().toString();
+
+                        if (email.equals(userEmail)) {
+                            myCallBack.onCallback("true");
+                            return;
                         }
                     }
                 }

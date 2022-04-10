@@ -3,6 +3,7 @@ package com.example.fatkick.subsystem.goal_setting;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -86,7 +87,8 @@ public class FinalGoalActivity extends AppCompatActivity {
 
         btSaveGoal_onClickListener = new View.OnClickListener() {
 
-            @RequiresApi(api = Build.VERSION_CODES.O)
+
+            @SuppressLint("NewApi")
             @Override
             public void onClick(View view) {
 
@@ -121,7 +123,8 @@ public class FinalGoalActivity extends AppCompatActivity {
     private View.OnClickListener getBtContinue_onClickListener() {
 
         btContinueOnClickListener = new View.OnClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.O)
+
+            @SuppressLint("NewApi")
             @Override
             public void onClick(View view) {
 

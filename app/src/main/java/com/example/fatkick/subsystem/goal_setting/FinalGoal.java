@@ -1,5 +1,6 @@
 package com.example.fatkick.subsystem.goal_setting;
 
+import android.annotation.SuppressLint;
 import android.os.Build;
 
 import androidx.annotation.RequiresApi;
@@ -16,7 +17,8 @@ public class FinalGoal {
     private String sDeadline;
     private String userEmail;
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
+
+    @SuppressLint("NewApi")
     public FinalGoal(User user, double weight) {
         this.user = user;
         this.weight = weight;

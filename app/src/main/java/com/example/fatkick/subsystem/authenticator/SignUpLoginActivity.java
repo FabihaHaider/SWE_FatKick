@@ -16,6 +16,7 @@ import com.example.fatkick.R;
 import com.example.fatkick.subsystem.goal_setting.FinalGoalActivity;
 import com.example.fatkick.subsystem.main.MainActivity;
 import com.example.fatkick.subsystem.main.MyCallBack;
+import com.example.fatkick.subsystem.storage.GoalStorage;
 
 public class SignUpLoginActivity extends AppCompatActivity {
 
@@ -25,6 +26,7 @@ public class SignUpLoginActivity extends AppCompatActivity {
     private EditText etEmail, etPassword;
     private String user_password, user_email;
     private Boolean FirstTime = false;
+    private GoalStorage goalStorage;
 
 
     @Override
@@ -72,9 +74,6 @@ public class SignUpLoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if(validate())
                 {
-                    if(isFirstTime())
-                        FirstTime = true;
-
                     authenticator.LoginUser(user_email, user_password, new MyCallBack() {
                         @Override
                         public void onCallback(String value) {
@@ -83,15 +82,27 @@ public class SignUpLoginActivity extends AppCompatActivity {
 
                             if(value.equals("Logged in successfully."))
                             {
-                                finish();
 
-                                Class SecondClass = MainActivity.class;
-                                if(FirstTime)
-                                {
-                                    SecondClass = FinalGoalActivity.class;
-                                }
-                                Intent intent = new Intent(SignUpLoginActivity.this, SecondClass).putExtra("FirstTime", FirstTime);
-                                startActivity(intent);
+                                String email = etEmail.getText().toString().trim();
+
+                                goalStorage.isGoalExists(email, new MyCallBack() {
+                                    @Override
+                                    public void onCallback(String value) {
+                                        if(value.equals("true")) {
+                                            finish();
+                                            Intent intent = new Intent(SignUpLoginActivity.this, MainActivity.class);
+                                            startActivity(intent);
+                                        }
+                                        else
+                                        {
+                                            finish();
+                                            Intent intent = new Intent(SignUpLoginActivity.this, FinalGoalActivity.class);
+                                            startActivity(intent);
+                                        }
+                                    }
+                                });
+
+
                             }
 
                         }
@@ -103,23 +114,6 @@ public class SignUpLoginActivity extends AppCompatActivity {
         return btLogin_OnClicListener;
     }
 
-    private boolean isFirstTime() {
-        SharedPreferences settings = getSharedPreferences("MyPrefs", 0);
-
-        String email = etEmail.getText().toString().trim();
-
-        if (settings.getBoolean(email, true)) {
-            //the app is being launched for first time, do something
-            // first time task
-            // record the fact that the app has been started at least once
-            settings.edit().putBoolean(email, false).commit();
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
 
     private void bindUI() {
         relativeLayout1 = findViewById(R.id.relative_layout1);
@@ -130,6 +124,7 @@ public class SignUpLoginActivity extends AppCompatActivity {
         etEmail = findViewById(R.id.et_email);
         etPassword = findViewById(R.id.et_password);
         authenticator = new Authenticator();
+        goalStorage = new GoalStorage();
 
     }
 
