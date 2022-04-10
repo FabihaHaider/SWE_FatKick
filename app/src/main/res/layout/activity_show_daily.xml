@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".subsystem.main.ShowDailyActivity"
+    android:orientation="vertical">
+
+
+    <TextView
+        android:id="@+id/tv_calorie_intake"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/tv_background"
+        android:text="Calorie Intake:"
+        android:textColor="@color/black"
+        android:gravity="center_vertical"
+        android:textSize="14sp"
+        android:paddingLeft="10dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackgroundBorderless">
+
+    </TextView>
+
+    <TextView
+        android:id="@+id/tv_activity_level"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/tv_background"
+        android:text="Activity Level:"
+        android:textColor="@color/black"
+        android:gravity="center_vertical"
+        android:textSize="14sp"
+        android:paddingLeft="10dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackgroundBorderless">
+
+    </TextView>
+
+    <TextView
+        android:id="@+id/tv_water_intake"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/tv_background"
+        android:text="Water Intake:"
+        android:textColor="@color/black"
+        android:gravity="center_vertical"
+        android:textSize="14sp"
+        android:paddingLeft="10dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackgroundBorderless">
+
+    </TextView>
+
+    <TextView
+        android:id="@+id/tv_meditation"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/tv_background"
+        android:text="Meditation:"
+        android:textColor="@color/black"
+        android:gravity="center_vertical"
+        android:textSize="14sp"
+        android:paddingLeft="10dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackgroundBorderless">
+
+    </TextView>
+
+    <TextView
+        android:id="@+id/tv_sleep"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/tv_background"
+        android:text="Sleep:"
+        android:textColor="@color/black"
+        android:gravity="center_vertical"
+        android:textSize="14sp"
+        android:paddingLeft="10dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackgroundBorderless">
+
+    </TextView>
+
+
+
+    <TextView
+        android:text="tap on any item to get suggestions and guidelines"
+        android:textColor="@color/gray"
+        android:textAlignment="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </TextView>
+
+</LinearLayout>

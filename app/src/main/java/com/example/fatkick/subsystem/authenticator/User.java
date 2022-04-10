@@ -1,5 +1,12 @@
 package com.example.fatkick.subsystem.authenticator;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.Period;
+import java.util.Calendar;
+import java.util.Date;
+
 public class User {
     private String name;
     private String DOB;
@@ -79,5 +86,16 @@ public class User {
 
     public String getPassword() {
         return password;
+    }
+
+    public long calculateAge() throws ParseException {
+        Date currentDate = new Date();
+        Date birthdate = (new SimpleDateFormat("MM/dd/yy")).parse(DOB);
+        Long diff = currentDate.getTime()- birthdate.getTime();
+        long age = (diff / (1000l * 60 * 60 * 24 * 365));
+
+        return  age;
+
+
     }
 }
