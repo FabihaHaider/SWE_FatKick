@@ -1,3 +1,4 @@
+
 package com.example.fatkick.subsystem.main;
 
 import androidx.annotation.NonNull;
@@ -7,6 +8,9 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -22,6 +26,8 @@ import com.example.fatkick.subsystem.goal_setting.ShowMyGoalActivity;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.Calendar;
 
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -41,8 +47,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         isOnlineUser();
 
-        if(isFirstTime())
-            authenticator.logout();
+        //reset at the start of a day
+        autoReset();
 
 
         navigationView.bringToFront();
@@ -54,25 +60,38 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
-    private boolean isFirstTime() {
-        SharedPreferences settings = getSharedPreferences("MyPrefs", 0);
+    //reset at 11.59 pm
+    private void autoReset() {
+        Calendar cal = Calendar.getInstance();
+        cal.set(Calendar.HOUR_OF_DAY, 23);
+        cal.set(Calendar.MINUTE, 59);
+        cal.set(Calendar.SECOND, 0);
 
-        if (settings.getBoolean("is_first_time", true)) {
-            //the app is being launched for first time, do something
-            // first time task
-            // record the fact that the app has been started at least once
-            settings.edit().putBoolean("is_first_time", false).commit();
-            return true;
+        if(cal.after(Calendar.getInstance())){
+            long time= cal.getTimeInMillis();
+
+            AlarmManager am = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+
+            //creating a new intent specifying the broadcast receiver
+            Intent i = new Intent(this, ScheduleReset.class);
+
+
+            //creating a pending intent using the intent
+            PendingIntent pi = PendingIntent.getBroadcast(this, 0, i,0);
+
+            //setting the repeating alarm that will be fired every day
+            am.setRepeating(AlarmManager.RTC_WAKEUP, time, AlarmManager.INTERVAL_DAY, pi);
+            Log.i("tuba", "Alarm has set");
+
         }
-        else
-        {
-            return false;
-        }
+
     }
+
 
     private void isOnlineUser() {
         if(! authenticator.isActiveUser())
         {
+            authenticator.logout();
             Log.i("main activity", "onStart: user not active" );
             Intent intent = new Intent(MainActivity.this, SignUpLoginActivity.class);
             startActivity(intent);
@@ -118,6 +137,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Intent intent = new Intent(this, ShowMyGoalActivity.class);
                 startActivity(intent);
                 break;
+
+
+            case R.id.viewActivityMenuItem:
+                //view activity
+                Intent intent3 = new Intent(this, ShowDailyActivity.class);
+                startActivity(intent3);
+                break;
+
+
+            case R.id.stepCounterMenuItem:
+                //step counter
+                Intent intent4 = new Intent(this, StepCountActivity.class);
+                startActivity(intent4);
+                break;
+
+
+
 
             case R.id.logoutMenuItem:
                 //logout
