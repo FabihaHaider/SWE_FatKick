@@ -7,6 +7,9 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -22,6 +25,8 @@ import com.example.fatkick.subsystem.goal_setting.ShowMyGoalActivity;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.Calendar;
 
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -45,6 +50,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             authenticator.logout();
 
 
+        //reset at the start of a day
+        autoReset();
+
+
         navigationView.bringToFront();
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open_navigation_drawer, R.string.close_navigation_drawer);
         drawerLayout.addDrawerListener(toggle);
@@ -53,6 +62,34 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setNavigationItemSelectedListener(this);
 
     }
+
+    //reset at 11.59 pm
+    private void autoReset() {
+        Calendar cal = Calendar.getInstance();
+        cal.set(Calendar.HOUR_OF_DAY, 23);
+        cal.set(Calendar.MINUTE, 59);
+        cal.set(Calendar.SECOND, 0);
+
+        if(cal.after(Calendar.getInstance())){
+            long time= cal.getTimeInMillis();
+
+            AlarmManager am = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+
+            //creating a new intent specifying the broadcast receiver
+            Intent i = new Intent(this, ScheduleReset.class);
+
+
+            //creating a pending intent using the intent
+            PendingIntent pi = PendingIntent.getBroadcast(this, 0, i,0);
+
+            //setting the repeating alarm that will be fired every day
+            am.setRepeating(AlarmManager.RTC_WAKEUP, time, AlarmManager.INTERVAL_DAY, pi);
+            Log.i("tuba", "Alarm has set");
+
+        }
+
+    }
+
 
     private boolean isFirstTime() {
         SharedPreferences settings = getSharedPreferences("MyPrefs", 0);
@@ -118,6 +155,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Intent intent = new Intent(this, ShowMyGoalActivity.class);
                 startActivity(intent);
                 break;
+
+
+            case R.id.viewActivityMenuItem:
+                //view activity
+                Intent intent3 = new Intent(this, ShowDailyActivity.class);
+                startActivity(intent3);
+                break;
+
+
+            case R.id.stepCounterMenuItem:
+                //step counter
+                Intent intent4 = new Intent(this, StepCountActivity.class);
+                startActivity(intent4);
+                break;
+
+
+
 
             case R.id.logoutMenuItem:
                 //logout

@@ -8,6 +8,21 @@
         android:icon="@drawable/final_goal_icon"
         />
 
+    <item
+        android:id="@+id/viewActivityMenuItem"
+        android:title="View Daily Activity"
+        />
+
+    <item
+        android:id="@+id/updateActivityMenuItem"
+        android:title="Update Daily Activity"
+        />
+
+    <item
+        android:id="@+id/stepCounterMenuItem"
+        android:title="Step Counter"
+        />
+
 </group>
 
 
