@@ -100,6 +100,27 @@
             app:layout_constraintVertical_bias="0.0" />
 
 
+        <TextView
+            android:id="@+id/tv_weight_alert"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_margin="20dp"
+            android:layout_marginTop="30dp"
+            android:drawablePadding="10dp"
+            android:ems="10"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.4"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_user_weight"
+            app:layout_constraintVertical_bias="0.0"
+            android:visibility="gone"/>
+
+
         <EditText
             android:id="@+id/et_user_height"
             android:layout_width="match_parent"
@@ -118,25 +139,44 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.4"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/et_user_weight"
+            app:layout_constraintTop_toBottomOf="@+id/tv_weight_alert"
             app:layout_constraintVertical_bias="0.0" />
+
+
+        <TextView
+            android:id="@+id/tv_height_alert"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_margin="20dp"
+            android:layout_marginTop="30dp"
+            android:drawablePadding="10dp"
+            android:ems="10"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.4"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_user_height"
+            app:layout_constraintVertical_bias="0.0"
+            android:visibility="gone"/>
 
         <RadioGroup
             android:id="@+id/radioGrp"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
-            android:layout_marginTop="30dp"
             android:drawablePadding="10dp"
             android:orientation="horizontal"
-            android:paddingTop="64dp"
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.4"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/et_user_weight"
+            app:layout_constraintTop_toBottomOf="@+id/tv_height_alert"
             app:layout_constraintVertical_bias="0.0"
             >
             <RadioButton

@@ -11,16 +11,19 @@
     <item
         android:id="@+id/viewActivityMenuItem"
         android:title="View Daily Activity"
+        android:icon="@drawable/ic_baseline_task"
         />
 
     <item
         android:id="@+id/updateActivityMenuItem"
         android:title="Update Daily Activity"
+        android:icon="@drawable/ic_baseline_add_task"
         />
 
     <item
         android:id="@+id/stepCounterMenuItem"
         android:title="Step Counter"
+        android:icon="@drawable/ic_baseline_directions_run"
         />
 
 </group>
@@ -39,7 +42,7 @@
             <item
                 android:id="@+id/logoutMenuItem"
                 android:title="Logout"
-                android:icon="@drawable/person"
+                android:icon="@drawable/logout"
                 />
         </group>
     </menu>
