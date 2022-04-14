@@ -12,7 +12,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FatKick">
-
+        <activity
+            android:name=".subsystem.main.UpdateDailyActivity"
+            android:exported="false" />
         <activity
             android:name=".subsystem.main.StepCountActivity"
             android:exported="false" />

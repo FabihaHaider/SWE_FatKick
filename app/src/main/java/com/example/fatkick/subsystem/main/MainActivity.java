@@ -152,7 +152,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(intent4);
                 break;
 
-
+            case R.id.updateActivityMenuItem:
+                //update activity
+                Intent intent5 = new Intent(this, UpdateDailyActivity.class);
+                startActivity(intent5);
+                break;
 
 
             case R.id.logoutMenuItem:

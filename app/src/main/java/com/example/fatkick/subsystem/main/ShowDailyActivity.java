@@ -2,6 +2,7 @@ package com.example.fatkick.subsystem.main;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 import com.example.fatkick.R;
 import com.example.fatkick.subsystem.authenticator.Authenticator;
 import com.example.fatkick.subsystem.authenticator.User;
+import com.example.fatkick.subsystem.storage.DailyActivityStorage;
 import com.example.fatkick.subsystem.storage.GoalStorage;
 import com.example.fatkick.subsystem.storage.UserInterface;
 import com.example.fatkick.subsystem.storage.UserStorage;
@@ -31,6 +33,8 @@ public class ShowDailyActivity extends AppCompatActivity implements DailyActivit
 
 
     DailyActivityController dailyActivityController = new DailyActivityController();
+    DailyActivityStorage dailyActivityStorage;
+    SharedPreferences sharedPref;
     TextView mtv_calorie_intake;
     TextView mtv_activity_level;
     TextView mtv_water_intake;
@@ -87,6 +91,7 @@ public class ShowDailyActivity extends AppCompatActivity implements DailyActivit
 
         userStorage = new UserStorage();
         authenticator = new Authenticator();
+        sharedPref = getSharedPreferences("dailyGoal", MODE_PRIVATE);
     }
 
     @Override
@@ -102,6 +107,12 @@ public class ShowDailyActivity extends AppCompatActivity implements DailyActivit
                 mtv_water_intake.setText("Water Intake: Try to drink at least "+dailyActivity.getWaterIntake().toString()+" liters");
                 mtv_meditation.setText("Meditation: Try to meditate at least "+dailyActivity.getMeditation().toString()+" minutes");
                 mtv_sleep.setText("Sleep: Try to sleep at least "+dailyActivity.getSleep().toString()+" hours");
+
+                //shared pref
+                dailyActivityStorage = new DailyActivityStorage(sharedPref,dailyActivity);
+                dailyActivityStorage.storeData();
+
+
             }
         });
 

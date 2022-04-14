@@ -73,5 +73,13 @@ public class DailyActivity {
         exercise[idx++] =  exc;
 
     }
+    public void calculateNetCal(){
+        //swimmimg per hour 500, running per hour 700, walking per hour 400, cycling per hour 600 kcal
+        Double burnt_cal = getExercise()[0].getDuration()*500/60 +
+                getExercise()[1].getDuration()*700/60+ getExercise()[2].getDuration()*400/60+
+                getExercise()[3].getDuration()*600/60;
+
+        setCalorieIntake(getCalorieIntake()-burnt_cal);
+    }
 
 }
