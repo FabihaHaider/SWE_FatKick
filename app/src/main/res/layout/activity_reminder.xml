@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".subsystem.reminder.DailyTaskReminderActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:layout_marginTop="30dp"
+        android:orientation="horizontal"
+        android:weightSum="3">
+
+        <TextView
+            android:id="@+id/tv_calorie_reminder"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:maxLines="2"
+            android:paddingTop="10dp"
+            android:paddingLeft="15dp"
+            android:text="Calorie intake reminder"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:layout_weight="2"/>
+
+        <ImageView
+            android:id="@+id/iv_calorie_reminder_on"
+            android:layout_marginLeft="60dp"
+            android:layout_width="10dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_baseline_notifications_active"
+            android:layout_weight="1"
+            />
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:layout_marginTop="30dp"
+        android:orientation="horizontal"
+        android:weightSum="3">
+
+        <TextView
+            android:id="@+id/tv_water_reminder"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:maxLines="2"
+            android:paddingTop="10dp"
+            android:paddingLeft="15dp"
+            android:text="Water intake reminder"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:layout_weight="2"/>
+
+        <ImageView
+            android:id="@+id/iv_water_reminder_on"
+            android:layout_marginLeft="60dp"
+            android:layout_width="10dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_baseline_notifications_active"
+            android:layout_weight="1"
+            />
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:layout_marginTop="30dp"
+        android:orientation="horizontal"
+        android:weightSum="3">
+
+        <TextView
+            android:id="@+id/tv_sleep_reminder"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:maxLines="2"
+            android:paddingTop="10dp"
+            android:paddingLeft="15dp"
+            android:text="Sleep reminder"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:layout_weight="2"/>
+
+        <ImageView
+            android:id="@+id/iv_sleep_reminder_on"
+            android:layout_marginLeft="60dp"
+            android:layout_width="10dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_baseline_notifications_active"
+            android:layout_weight="1"
+            />
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:layout_marginTop="30dp"
+        android:orientation="horizontal"
+        android:weightSum="3">
+
+        <TextView
+            android:id="@+id/tv_meditation_reminder"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:maxLines="2"
+            android:paddingTop="10dp"
+            android:paddingLeft="15dp"
+            android:text="Meditaiton reminder"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:layout_weight="2"/>
+
+        <ImageView
+            android:id="@+id/iv_meditaion_reminder_on"
+            android:layout_marginLeft="60dp"
+            android:layout_width="10dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_baseline_notifications_active"
+            android:layout_weight="1"
+            />
+
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:layout_marginTop="30dp"
+        android:orientation="horizontal"
+        android:weightSum="3">
+
+        <TextView
+            android:id="@+id/tv_exercise_reminder"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:maxLines="2"
+            android:paddingTop="10dp"
+            android:paddingLeft="15dp"
+            android:text="Exercise reminder"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:layout_weight="2"/>
+
+        <ImageView
+            android:id="@+id/iv_exercise_reminder_on"
+            android:layout_marginLeft="60dp"
+            android:layout_width="10dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_baseline_notifications_active"
+            android:layout_weight="1"
+            />
+
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

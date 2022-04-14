@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACTIVITY_RECOGNITION" />
+    <uses-permission android:name="com.android.alarm.permission.SET_ALARM"/>
 
     <application
         android:allowBackup="true"
@@ -12,7 +13,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FatKick">
-
+        <activity
+            android:name=".subsystem.reminder.DailyTaskReminderActivity"
+            android:exported="false" />
         <activity
             android:name=".subsystem.main.StepCountActivity"
             android:exported="false" />
@@ -49,6 +52,11 @@
 
         <receiver
             android:name=".subsystem.main.ScheduleReset"
+            android:enabled="true"
+            android:exported="true" />
+
+        <receiver
+            android:name=".subsystem.reminder.AlertReceiver"
             android:enabled="true"
             android:exported="true" />
     </application>

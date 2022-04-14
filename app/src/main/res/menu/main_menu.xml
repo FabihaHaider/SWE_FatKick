@@ -26,6 +26,11 @@
         android:icon="@drawable/ic_baseline_directions_run"
         />
 
+    <item
+        android:id="@+id/reminder"
+        android:title="Daily Activity Reminder"
+        android:icon="@drawable/ic_baseline_notifications_active"/>
+
 </group>
 
 
