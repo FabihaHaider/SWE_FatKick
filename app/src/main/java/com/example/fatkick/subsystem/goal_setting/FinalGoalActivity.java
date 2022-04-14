@@ -38,7 +38,6 @@ public class FinalGoalActivity extends AppCompatActivity {
     private String weight;
 
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
