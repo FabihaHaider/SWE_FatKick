@@ -26,6 +26,10 @@
         android:icon="@drawable/ic_baseline_directions_run"
         />
 
+    <item
+        android:id="@+id/progressMenuItem"
+        android:title="Progress Report"
+        />
 </group>
 
 

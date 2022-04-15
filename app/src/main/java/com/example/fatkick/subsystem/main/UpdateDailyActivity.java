@@ -59,8 +59,6 @@ public class UpdateDailyActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 saveLocal();
-                //daily activity -> completed daily activity
-                dailyActivity.calculateNetCal();
                 finish();
 
 
@@ -114,7 +112,8 @@ public class UpdateDailyActivity extends AppCompatActivity {
                     dailyActivity.addExercise(new Exercise("walking", Double.parseDouble(walking.getText().toString().trim())+time));
                     dailyActivity.addExercise(new Exercise("cycling", Double.parseDouble(cycling.getText().toString().trim())));
 
-
+                    //daily activity -> completed daily activity
+                    dailyActivity.calculateNetCal();
                     dailyActivityStorage.setDailyActivity(dailyActivity);
                     dailyActivityStorage.storeData();
 

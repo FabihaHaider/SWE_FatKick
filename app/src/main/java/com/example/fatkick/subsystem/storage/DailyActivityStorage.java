@@ -53,4 +53,16 @@ public class DailyActivityStorage {
         editor.putFloat("cycling", this.dailyActivity.getExercise()[3].getDuration().floatValue());
         editor.apply();
     }
+
+    public void storeGoalData(){
+        //save to local storage, store progress in firebase
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putFloat("calIntake", this.dailyActivity.getCalorieIntake().floatValue());
+        editor.putString("actv_level", this.dailyActivity.getActivityLevel().trim());
+        editor.putFloat("wtrIntake", this.dailyActivity.getWaterIntake().floatValue());
+        editor.putFloat("meditation", this.dailyActivity.getMeditation().floatValue());
+        editor.putFloat("sleep", this.dailyActivity.getSleep().floatValue());
+
+        editor.apply();
+    }
 }

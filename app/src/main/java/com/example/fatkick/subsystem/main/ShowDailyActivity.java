@@ -110,7 +110,7 @@ public class ShowDailyActivity extends AppCompatActivity implements DailyActivit
 
                 //shared pref
                 dailyActivityStorage = new DailyActivityStorage(sharedPref,dailyActivity);
-                dailyActivityStorage.storeData();
+                dailyActivityStorage.storeGoalData();
 
 
             }

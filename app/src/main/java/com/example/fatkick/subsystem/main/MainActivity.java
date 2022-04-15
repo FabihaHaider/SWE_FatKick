@@ -23,6 +23,7 @@ import com.example.fatkick.subsystem.authenticator.Authenticator;
 import com.example.fatkick.subsystem.authenticator.ShowProfileActivity;
 import com.example.fatkick.subsystem.authenticator.SignUpLoginActivity;
 import com.example.fatkick.subsystem.goal_setting.ShowMyGoalActivity;
+import com.example.fatkick.subsystem.progress.ProgressActivity;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -156,6 +157,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 //update activity
                 Intent intent5 = new Intent(this, UpdateDailyActivity.class);
                 startActivity(intent5);
+                break;
+
+            case R.id.progressMenuItem:
+                //progress
+                Intent intent6 = new Intent(this, ProgressActivity.class);
+                startActivity(intent6);
                 break;
 
 
