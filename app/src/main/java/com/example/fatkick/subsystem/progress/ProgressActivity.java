@@ -68,20 +68,24 @@ public class ProgressActivity extends AppCompatActivity {
                     overallProgress.setText("No Progress record found");
                 }
                 else {
-                    Double totalProgress = ((progressReport.getCalorieIntakeProgress()+ progressReport.getActivityProgress()+ progressReport.getWaterIntakeProgress()+
-                                        progressReport.getSleepProgress()+ progressReport.getMeditationProgress())/progressReport.getDays());
+                    Double totalProgress = ((progressReport.getCalorieIntakeProgress()+ progressReport.getActivityProgress()+
+                            progressReport.getWaterIntakeProgress()+ progressReport.getSleepProgress()+
+                            progressReport.getMeditationProgress())/progressReport.getDays());
 
-
-                    overallProgress.setText("Overall Progress of Last "+ progressReport.getDays()+ " Days: "+totalProgress+ "%");
-                    calorieProgress.setText("Calorie Intake Progress: " + progressReport.getCalorieIntakeProgress()+"%");
-                    activityProgress.setText("Activity Progress: " + progressReport.getActivityProgress()+"%");
-                    waterProgress.setText("Water Intake Progress: " + progressReport.getWaterIntakeProgress()+"%");
-                    sleepProgress.setText("Sleep Progress: " + progressReport.getSleepProgress()+"%");
-                    meditationProgress.setText("Meditation Progress: " + progressReport.getMeditationProgress()+"%");
+                    showProgress(totalProgress, progressReport);
 
                 }
 
+            }
 
+            private void showProgress(Double totalProgress, ProgressReport progressReport) {
+
+                overallProgress.setText("Overall Progress of Last "+ progressReport.getDays()+ " Days: "+totalProgress+ "%");
+                calorieProgress.setText("Calorie Intake Progress: " + progressReport.getCalorieIntakeProgress()+"%");
+                activityProgress.setText("Activity Progress: " + progressReport.getActivityProgress()+"%");
+                waterProgress.setText("Water Intake Progress: " + progressReport.getWaterIntakeProgress()+"%");
+                sleepProgress.setText("Sleep Progress: " + progressReport.getSleepProgress()+"%");
+                meditationProgress.setText("Meditation Progress: " + progressReport.getMeditationProgress()+"%");
             }
         });
 
