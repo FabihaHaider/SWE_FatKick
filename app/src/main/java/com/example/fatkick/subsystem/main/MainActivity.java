@@ -22,21 +22,40 @@ import com.example.fatkick.R;
 import com.example.fatkick.subsystem.authenticator.Authenticator;
 import com.example.fatkick.subsystem.authenticator.ShowProfileActivity;
 import com.example.fatkick.subsystem.authenticator.SignUpLoginActivity;
+import com.example.fatkick.subsystem.authenticator.User;
 import com.example.fatkick.subsystem.goal_setting.ShowMyGoalActivity;
 import com.example.fatkick.subsystem.progress.ProgressActivity;
+import com.example.fatkick.subsystem.storage.DailyActivityStorage;
+import com.example.fatkick.subsystem.storage.UserInterface;
+import com.example.fatkick.subsystem.storage.UserStorage;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.ParseException;
 import java.util.Calendar;
 
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener,DailyActivityController.DailyActivityCallback{
 
     private Toolbar toolbar;
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
     private Authenticator authenticator;
+    private UserStorage userStorage;
+
+    //initialization
+    /* Later this is taken from database*/
+    Number age=25;
+    String gender = "male";
+    Number height = 180; //in cm
+    Number weight = 70;  //in kg
+    String activity_level = "level_1";
+
+
+    DailyActivityController dailyActivityController = new DailyActivityController();
+    DailyActivityStorage dailyActivityStorage;
+    SharedPreferences sharedPref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +77,51 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         toggle.syncState();
 
         navigationView.setNavigationItemSelectedListener(this);
+
+        String user_email = authenticator.getCurrentUser().trim();
+
+        ////
+        userStorage.getUser(user_email, new UserInterface() {
+            @Override
+            public void onCallBack(User user) {
+                try {
+                    age= user.calculateAge();
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                gender = user.getGender();
+                height = user.getHeight();
+                weight = user.getWeight();
+                activity_level = "level_2";
+
+                Log.i("tuba", age.toString()+gender+height.toString()+weight.toString()+activity_level);
+
+                dailyActivityController.generateDailyActivity(age,gender,height,weight,activity_level);
+                dailyActivityController.setActivityCallback(MainActivity.this);
+
+
+            }
+        });
+
+    }
+
+
+    ///api call synchronization
+    @Override
+    public void updateDailyActivity(@NonNull DailyActivity dailyActivity) {
+        Log.i("tuba", dailyActivity.getCalorieIntake().toString()+" from update");
+
+        MainActivity.this.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                //shared pref
+                dailyActivityStorage = new DailyActivityStorage(sharedPref,dailyActivity);
+                dailyActivityStorage.storeGoalData();
+                Log.i("tuba", "daily activity stored");
+
+
+            }
+        });
 
     }
 
@@ -114,6 +178,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         this.drawerLayout = findViewById(R.id.drawer_layout);
         this.navigationView = findViewById(R.id.navigatoin_view);
         this.authenticator = new Authenticator();
+
+        userStorage = new UserStorage();
+        sharedPref = getSharedPreferences("dailyGoal", MODE_PRIVATE);
     }
 
     @Override

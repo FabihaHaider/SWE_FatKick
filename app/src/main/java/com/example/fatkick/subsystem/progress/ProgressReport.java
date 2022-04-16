@@ -4,23 +4,28 @@ import android.util.Log;
 
 import java.util.Date;
 
-public class DailyProgressReport {
+public class ProgressReport {
     String date;
+    int days;
     Double calorieIntakeProgress;
     Double activityProgress;
     Double waterIntakeProgress;
     Double sleepProgress;
     Double meditationProgress;
 
-    public DailyProgressReport(){
+
+
+    public ProgressReport(){
         Date curDate = new Date();
         this.date = curDate.toString();
+        this.days = 1;
 
     }
 
-    public DailyProgressReport(Double calorieIntakeProgress, Double activityProgress, Double waterIntakeProgress, Double sleepProgress, Double meditationProgress) {
+    public ProgressReport(Double calorieIntakeProgress, Double activityProgress, Double waterIntakeProgress, Double sleepProgress, Double meditationProgress) {
         Date curDate = new Date();
         this.date = curDate.toString();
+        this.days = 1;
         this.calorieIntakeProgress = calorieIntakeProgress;
         this.activityProgress = activityProgress;
         this.waterIntakeProgress = waterIntakeProgress;
@@ -34,6 +39,14 @@ public class DailyProgressReport {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public int getDays() {
+        return days;
+    }
+
+    public void setDays(int days) {
+        this.days = days;
     }
 
     public Double getCalorieIntakeProgress() {

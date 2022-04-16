@@ -65,4 +65,13 @@ public class DailyActivityStorage {
 
         editor.apply();
     }
+
+    public void loadGoalData() {
+        dailyActivity.setCalorieIntake((double) sharedPref.getFloat("calIntake", 0.0F));
+        dailyActivity.setActivityLevel( sharedPref.getString("actv_level", "0%"));
+        dailyActivity.setWaterIntake((double) sharedPref.getFloat("wtrIntake", 0.0F));
+        dailyActivity.setMeditation((double) sharedPref.getFloat("meditation", 0.0F));
+        dailyActivity.setSleep((double) sharedPref.getFloat("sleep", 0.0F));
+
+    }
 }

@@ -4,12 +4,7 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
-import com.example.fatkick.subsystem.authenticator.User;
-import com.example.fatkick.subsystem.goal_setting.FinalGoal;
-import com.example.fatkick.subsystem.main.MyCallBack;
-import com.example.fatkick.subsystem.progress.DailyProgressReport;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
+import com.example.fatkick.subsystem.progress.ProgressReport;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -18,12 +13,12 @@ import com.google.firebase.database.ValueEventListener;
 
 public class ProgressStorage {
     private String userEmail;
-    private DailyProgressReport dailyProgressReport;
+    private ProgressReport progressReport;
     private DatabaseReference databaseReference;
 
-    public ProgressStorage(String userEmail, DailyProgressReport dailyProgressReport) {
+    public ProgressStorage(String userEmail, ProgressReport progressReport) {
         this.userEmail = userEmail;
-        this.dailyProgressReport = dailyProgressReport;
+        this.progressReport = progressReport;
         databaseReference = FirebaseDatabase.getInstance().getReference().child("DailyProgress").child(userEmail.replace(".",""));
     }
 
@@ -33,12 +28,12 @@ public class ProgressStorage {
 
     public void storeProgress()
     {
-        databaseReference.push().setValue(dailyProgressReport);
+        databaseReference.push().setValue(progressReport);
     }
 
     public void readProgress(ProgressInterface progressInterface)
-    {   dailyProgressReport = new DailyProgressReport(0.0, 0.0, 0.0, 0.0, 0.0);
-        Log.i("tuba", "blank report"+ dailyProgressReport.getCalorieIntakeProgress());
+    {   progressReport = new ProgressReport(0.0, 0.0, 0.0, 0.0, 0.0);
+        Log.i("tuba", "blank report"+ progressReport.getCalorieIntakeProgress());
         Log.i("tuba", "beforeAddValueEvent");
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -49,15 +44,15 @@ public class ProgressStorage {
                     Log.i("tuba", "indatasnapshot");
                     if (snapshot.exists()) {
                         cnt++;
-                        DailyProgressReport tmp = dataSnapshot.getValue(DailyProgressReport.class);
+                        ProgressReport tmp = dataSnapshot.getValue(ProgressReport.class);
 
                         //Log.i("tuba", "from tmp"+tmp.getCalorieIntakeProgress());
 
-                        dailyProgressReport.setCalorieIntakeProgress(dailyProgressReport.getCalorieIntakeProgress()+tmp.getCalorieIntakeProgress());
-                        dailyProgressReport.setActivityProgress(dailyProgressReport.getActivityProgress()+tmp.getActivityProgress());
-                        dailyProgressReport.setWaterIntakeProgress(dailyProgressReport.getWaterIntakeProgress()+tmp.getWaterIntakeProgress());
-                        dailyProgressReport.setSleepProgress(dailyProgressReport.getSleepProgress()+tmp.getSleepProgress());
-                        dailyProgressReport.setMeditationProgress(dailyProgressReport.getMeditationProgress()+tmp.getMeditationProgress());
+                        progressReport.setCalorieIntakeProgress(progressReport.getCalorieIntakeProgress()+tmp.getCalorieIntakeProgress());
+                        progressReport.setActivityProgress(progressReport.getActivityProgress()+tmp.getActivityProgress());
+                        progressReport.setWaterIntakeProgress(progressReport.getWaterIntakeProgress()+tmp.getWaterIntakeProgress());
+                        progressReport.setSleepProgress(progressReport.getSleepProgress()+tmp.getSleepProgress());
+                        progressReport.setMeditationProgress(progressReport.getMeditationProgress()+tmp.getMeditationProgress());
 
 
                     }
@@ -66,8 +61,9 @@ public class ProgressStorage {
                     }
                 }
 
-                dailyProgressReport.avg(cnt);
-                progressInterface.onCallBack(dailyProgressReport);
+                progressReport.avg(cnt);
+                progressReport.setDays(cnt);
+                progressInterface.onCallBack(progressReport);
 
             }
 
