@@ -12,7 +12,6 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -28,9 +27,9 @@ import com.example.fatkick.subsystem.progress.ProgressActivity;
 import com.example.fatkick.subsystem.storage.DailyActivityStorage;
 import com.example.fatkick.subsystem.storage.UserInterface;
 import com.example.fatkick.subsystem.storage.UserStorage;
+import com.example.fatkick.subsystem.reminder.DailyTaskReminderActivity;
+import com.example.fatkick.subsystem.reminder.DatabaseUpdateReminder;
 import com.google.android.material.navigation.NavigationView;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 import java.text.ParseException;
 import java.util.Calendar;
@@ -56,6 +55,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     DailyActivityController dailyActivityController = new DailyActivityController();
     DailyActivityStorage dailyActivityStorage;
     SharedPreferences sharedPref;
+    private DatabaseUpdateReminder databaseUpdateReminder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +69,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         //reset at the start of a day
         autoReset();
+
+        databaseUpdateReminder.buildDatabaseUpdateNotification();
 
 
         navigationView.bringToFront();
@@ -181,6 +183,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         userStorage = new UserStorage();
         sharedPref = getSharedPreferences("dailyGoal", MODE_PRIVATE);
+        this.databaseUpdateReminder = new DatabaseUpdateReminder(MainActivity.this);
     }
 
     @Override
@@ -245,6 +248,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.profileMenuItem:
                 Intent intent2 = new Intent(this, ShowProfileActivity.class);
                 startActivity(intent2);
+                break;
+
+            case R.id.reminder:
+                Intent intent5 = new Intent(this, DailyTaskReminderActivity.class);
+                startActivity(intent5);
                 break;
         }
         drawerLayout.closeDrawer(GravityCompat.START);
