@@ -12,6 +12,7 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -225,8 +226,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             case R.id.updateActivityMenuItem:
                 //update activity
-                Intent intent5 = new Intent(this, UpdateDailyActivity.class);
-                startActivity(intent5);
+                Intent intent7 = new Intent(this, UpdateDailyActivity.class);
+                startActivity(intent7);
                 break;
 
             case R.id.progressMenuItem:

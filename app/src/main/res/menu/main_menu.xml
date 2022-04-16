@@ -29,6 +29,7 @@
     <item
         android:id="@+id/progressMenuItem"
         android:title="Progress Report"
+        android:icon="@drawable/ic_baseline_assessment_24"
         />
     <item
         android:id="@+id/reminder"

@@ -33,20 +33,14 @@ public class ProgressStorage {
 
     public void readProgress(ProgressInterface progressInterface)
     {   progressReport = new ProgressReport(0.0, 0.0, 0.0, 0.0, 0.0);
-        Log.i("tuba", "blank report"+ progressReport.getCalorieIntakeProgress());
-        Log.i("tuba", "beforeAddValueEvent");
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 int cnt=0;
-                Log.i("tuba", "beforeDataSnapshot"+cnt);
                 for (DataSnapshot dataSnapshot: snapshot.getChildren()) {
-                    Log.i("tuba", "indatasnapshot");
                     if (snapshot.exists()) {
                         cnt++;
                         ProgressReport tmp = dataSnapshot.getValue(ProgressReport.class);
-
-                        //Log.i("tuba", "from tmp"+tmp.getCalorieIntakeProgress());
 
                         progressReport.setCalorieIntakeProgress(progressReport.getCalorieIntakeProgress()+tmp.getCalorieIntakeProgress());
                         progressReport.setActivityProgress(progressReport.getActivityProgress()+tmp.getActivityProgress());
