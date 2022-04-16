@@ -35,7 +35,7 @@ public class GoalStorage {
 
     public void storeGoal(MyCallBack myCallBack)
     {
-        FinalGoal finalGoal = new FinalGoal(user.getEmail(),  this.finalGoal.getWeight(), this.finalGoal.getDeadline().toString());
+        FinalGoal finalGoal = new FinalGoal(user.getEmail(),  this.finalGoal.getWeight(), this.finalGoal.getDeadline());
 
         databaseReference.push().setValue(finalGoal).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override

@@ -81,30 +81,34 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         navigationView.setNavigationItemSelectedListener(this);
 
-        String user_email = authenticator.getCurrentUser().trim();
 
-        ////
-        userStorage.getUser(user_email, new UserInterface() {
-            @Override
-            public void onCallBack(User user) {
-                try {
-                    age= user.calculateAge();
-                } catch (ParseException e) {
-                    e.printStackTrace();
+        if(authenticator.isActiveUser()) {
+
+            String user_email = authenticator.getCurrentUser().trim();
+
+            ////
+            userStorage.getUser(user_email, new UserInterface() {
+                @Override
+                public void onCallBack(User user) {
+                    try {
+                        age = user.calculateAge();
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                    gender = user.getGender();
+                    height = user.getHeight();
+                    weight = user.getWeight();
+                    activity_level = "level_2";
+
+                    Log.i("tuba", age.toString() + gender + height.toString() + weight.toString() + activity_level);
+
+                    dailyActivityController.generateDailyActivity(age, gender, height, weight, activity_level);
+                    dailyActivityController.setActivityCallback(MainActivity.this);
+
+
                 }
-                gender = user.getGender();
-                height = user.getHeight();
-                weight = user.getWeight();
-                activity_level = "level_2";
-
-                Log.i("tuba", age.toString()+gender+height.toString()+weight.toString()+activity_level);
-
-                dailyActivityController.generateDailyActivity(age,gender,height,weight,activity_level);
-                dailyActivityController.setActivityCallback(MainActivity.this);
-
-
-            }
-        });
+            });
+        }
 
     }
 
@@ -160,12 +164,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if(! authenticator.isActiveUser())
         {
             authenticator.logout();
-            Log.i("main activity", "onStart: user not active" );
             Intent intent = new Intent(MainActivity.this, SignUpLoginActivity.class);
             startActivity(intent);
         }
-        else
-            Log.i("main activity", "onStart: user active");
     }
 
     @Override

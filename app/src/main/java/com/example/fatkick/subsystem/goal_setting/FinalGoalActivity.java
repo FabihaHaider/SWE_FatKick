@@ -7,6 +7,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -86,8 +87,6 @@ public class FinalGoalActivity extends AppCompatActivity {
 
         btSaveGoal_onClickListener = new View.OnClickListener() {
 
-
-            @SuppressLint("NewApi")
             @Override
             public void onClick(View view) {
 
@@ -123,7 +122,6 @@ public class FinalGoalActivity extends AppCompatActivity {
 
         btContinueOnClickListener = new View.OnClickListener() {
 
-            @SuppressLint("NewApi")
             @Override
             public void onClick(View view) {
 
@@ -138,13 +136,19 @@ public class FinalGoalActivity extends AppCompatActivity {
                         @Override
                         public void onCallback(String value) {
                             Toast.makeText(FinalGoalActivity.this, value, Toast.LENGTH_SHORT).show();
-
+                            Log.i("finalGoal", "onCallback: " + value);
                             if(value.equals("Goal saved successfully"))
                             {
-                                finish();
+                                Log.i("finalGoal", "onCallback:  successful" + value);
                                 Intent intent = new Intent(FinalGoalActivity.this, MainActivity.class);
                                 startActivity(intent);
                             }
+                            else
+                            {
+                                Log.i("finalGoal", "onCallback:  not successful" + value);
+                                Toast.makeText(FinalGoalActivity.this, "Try again.", Toast.LENGTH_SHORT).show();
+                            }
+
                         }
                     });
                 }
