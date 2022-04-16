@@ -14,6 +14,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FatKick">
         <activity
+            android:name=".subsystem.progress.ProgressActivity"
+            android:exported="false" />
+        <activity
+            android:name=".subsystem.main.UpdateDailyActivity"
+            android:exported="false" />
+        <activity
             android:name=".subsystem.reminder.DailyTaskReminderActivity"
             android:exported="false" />
         <activity

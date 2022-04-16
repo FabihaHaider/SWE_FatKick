@@ -25,7 +25,7 @@ import java.util.Calendar;
 public class StepCountActivity extends AppCompatActivity implements SensorEventListener {
 
     SensorManager sensorManager;
-    SharedPreferences sharedpreferences;
+    static SharedPreferences sharedpreferences;
     Boolean running= false;
     float totalSteps= 0.0F;
     float prevTotalSteps= 0.0F;

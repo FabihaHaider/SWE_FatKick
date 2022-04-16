@@ -10,4 +10,12 @@
     <string name="save_goal">Save Goal</string>
     <string name="safe_goal">Safe Goal</string>
     <string name="suggest_goal">Suggest Goal</string>
+
+    <string-array name="activity_levels">
+        <item>100%</item>
+        <item>75%</item>
+        <item>50%</item>
+        <item>25%</item>
+        <item>0%</item>
+    </string-array>
 </resources>

@@ -11,6 +11,11 @@ public class DailyActivity {
     private Exercise[] exercise; //idx 0-> swimming, idx 1 -> running, idx 2-> walking, idx 3-> cycling
     private int idx;
 
+
+    public  DailyActivity(){
+
+    }
+
     public DailyActivity(Double calorieIntake, String activityLevel, Double waterIntake, Double sleep, Double meditation) {
         this.calorieIntake = calorieIntake;
         this.activityLevel = activityLevel;
@@ -72,6 +77,14 @@ public class DailyActivity {
     public void addExercise(Exercise exc){
         exercise[idx++] =  exc;
 
+    }
+    public void calculateNetCal(){
+        //swimmimg per hour 500, running per hour 700, walking per hour 400, cycling per hour 600 kcal
+        Double burnt_cal = getExercise()[0].getDuration()*500/60 +
+                getExercise()[1].getDuration()*700/60+ getExercise()[2].getDuration()*400/60+
+                getExercise()[3].getDuration()*600/60;
+
+        setCalorieIntake(getCalorieIntake()-burnt_cal);
     }
 
 }
