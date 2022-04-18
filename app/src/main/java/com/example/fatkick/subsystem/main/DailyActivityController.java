@@ -1,5 +1,7 @@
 package com.example.fatkick.subsystem.main;
 
+import android.util.Log;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -88,15 +90,15 @@ public class DailyActivityController {
 
                     try {
                         JSONObject JSONresponse = new JSONObject(stringResponse);
-                        Double cal1 = JSONresponse.getJSONObject("data").getJSONObject("goals").getJSONObject("Extreme weight loss").getDouble("calory");
+                        Double cal1 = JSONresponse.getJSONObject("data").getJSONObject("goals")
+                                .getJSONObject("Extreme weight loss").getDouble("calory");
 
                         dailyActivity.setCalorieIntake(cal1);
                         activityCallback.updateDailyActivity(dailyActivity);
+                        Log.i("output", "daily activity created");
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-
-
                 }
             }
         });

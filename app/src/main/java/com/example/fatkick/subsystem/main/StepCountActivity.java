@@ -50,10 +50,6 @@ public class StepCountActivity extends AppCompatActivity implements SensorEventL
             }
         });
 
-        //reset at the end of a day
-        //autoReset();
-
-
     }
 
 

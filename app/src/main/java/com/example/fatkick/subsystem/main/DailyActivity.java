@@ -11,6 +11,11 @@ public class DailyActivity {
     private Exercise[] exercise; //idx 0-> swimming, idx 1 -> running, idx 2-> walking, idx 3-> cycling
     private int idx;
 
+
+    public  DailyActivity(){
+
+    }
+
     public DailyActivity(Double calorieIntake, String activityLevel, Double waterIntake, Double sleep, Double meditation) {
         this.calorieIntake = calorieIntake;
         this.activityLevel = activityLevel;

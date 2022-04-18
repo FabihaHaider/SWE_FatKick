@@ -7,18 +7,19 @@ import androidx.annotation.RequiresApi;
 
 import com.example.fatkick.subsystem.authenticator.User;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.util.Calendar;
 
 
 public class FinalGoal {
     private User user;
     private double weight;
-    private LocalDate deadline;
+    private String deadline;
     private String sDeadline;
     private String userEmail;
 
 
-    @SuppressLint("NewApi")
     public FinalGoal(User user, double weight) {
         this.user = user;
         this.weight = weight;
@@ -58,18 +59,20 @@ public class FinalGoal {
         this.weight = weight;
     }
 
-    public LocalDate getDeadline() {
+    public String getDeadline() {
         return deadline;
     }
 
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    public LocalDate calculateDeadline()
+    public String calculateDeadline()
     {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Calendar cal = Calendar.getInstance();
 
-        double weeks = user.getWeight() - weight;
-        LocalDate today = LocalDate.now();
-        deadline = today.plusDays(Math.round(weeks * 7));
+        long weeks = (long) (user.getWeight() - weight);
+        long days = weeks * 7;
+        cal.add(Calendar.DAY_OF_MONTH, (int) days);
+        deadline = sdf.format(cal.getTime());
         return deadline;
     }
 
