@@ -2,8 +2,11 @@ package com.example.fatkick.subsystem.authenticator;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -27,6 +30,7 @@ public class SignUpLoginActivity extends AppCompatActivity {
     private String user_password, user_email;
     private Boolean FirstTime = false;
     private GoalStorage goalStorage;
+    private boolean connected = false;
 
 
     @Override
@@ -39,9 +43,12 @@ public class SignUpLoginActivity extends AppCompatActivity {
 
         handler.postDelayed(runnable, 2000);
 
+
         btLogin.setOnClickListener(getBtLogin_OnCLickListener());
         btSignUp.setOnClickListener(getBtSignUp_OnClickListener());
         btResetPass.setOnClickListener(getBtResetPass_OnClicklistener());
+
+
     }
 
 

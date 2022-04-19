@@ -3,14 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/deadline.xml" value="0.2" />
         <entry key="app/src/main/res/drawable/ic_baseline_directions_run.xml" value="0.201" />
         <entry key="app/src/main/res/drawable/ic_baseline_email.xml" value="0.201" />
         <entry key="app/src/main/res/drawable/tv_background.xml" value="0.157" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.23802083333333332" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.22618276085547634" />
         <entry key="app/src/main/res/layout/activity_progress.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_show_daily.xml" value="0.190625" />
         <entry key="app/src/main/res/layout/activity_step_count.xml" value="0.22291666666666668" />
         <entry key="app/src/main/res/layout/activity_update_daily.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/header.xml" value="0.17325227963525835" />
         <entry key="app/src/main/res/menu/main_menu.xml" value="0.23802083333333332" />
       </map>
     </option>

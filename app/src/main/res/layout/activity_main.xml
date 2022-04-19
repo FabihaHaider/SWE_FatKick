@@ -26,21 +26,66 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
                 <androidx.appcompat.widget.Toolbar
                     android:id="@+id/toolbar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:minHeight="?actionBarSize"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    />
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                <ImageView
+                    android:id="@+id/iv_homepage_calorieImage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="300dp"
+                    android:src="@drawable/calorie"
+                    android:layout_margin="10dp" />
+
+                <ImageView
+                    android:id="@+id/iv_homepage_calorieChart"
+                    android:layout_width="wrap_content"
+                    android:layout_height="400dp"
+                    android:src="@drawable/calorie_chart"
+                    android:layout_margin="10dp"
+                    />
+
+                <ImageView
+                    android:id="@+id/iv_homepage_water"
+                    android:layout_width="wrap_content"
+                    android:layout_height="400dp"
+                    android:src="@drawable/water"
+                    android:layout_margin="10dp"
+                    />
+
+                <ImageView
+                    android:id="@+id/iv_homepage_sleep"
+                    android:layout_width="wrap_content"
+                    android:layout_height="400dp"
+                    android:src="@drawable/sleep"
+                    android:layout_margin="10dp"
+                    />
+
+                <ImageView
+                    android:id="@+id/iv_homepage_exercise"
+                    android:layout_width="wrap_content"
+                    android:layout_height="400dp"
+                    android:src="@drawable/exercise"
+                    android:layout_margin="10dp"
+                    />
+
+                <ImageView
+                    android:id="@+id/iv_homepage_meditate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="400dp"
+                    android:src="@drawable/meditation"
+                    android:layout_margin="10dp"
+                    />
+
+            </LinearLayout>
         </ScrollView>
 
     </androidx.drawerlayout.widget.DrawerLayout>
