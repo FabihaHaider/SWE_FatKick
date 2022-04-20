@@ -46,8 +46,6 @@ public class Authenticator {
 
     }
 
-
-
     private void sendEmailVerification(MyCallBack myCallBack) {
 
         FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
@@ -62,7 +60,7 @@ public class Authenticator {
                     }
                     else
                     {
-                        myCallBack.onCallback("Error occured while sending mail,");
+                        myCallBack.onCallback("Error occurred while sending mail");
                     }
                 }
             });
@@ -93,7 +91,6 @@ public class Authenticator {
             @Override
             public void onFailure(@NonNull Exception e) {
 
-                Log.i("authenticator", "onFailure: ");
                 myCallBack.onCallback("Enter valid email and password");
 
             }

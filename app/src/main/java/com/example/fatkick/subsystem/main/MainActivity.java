@@ -14,8 +14,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.fatkick.R;
@@ -43,6 +48,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private NavigationView navigationView;
     private Authenticator authenticator;
     private UserStorage userStorage;
+    private DatabaseUpdateReminder databaseUpdateReminder;
+    private View headerView;
+    private TextView navEmail;
 
     //initialization
     /* Later this is taken from database*/
@@ -56,7 +64,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     DailyActivityController dailyActivityController = new DailyActivityController();
     DailyActivityStorage dailyActivityStorage;
     SharedPreferences sharedPref;
-    private DatabaseUpdateReminder databaseUpdateReminder;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +75,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         bindUI();
 
+
+
         isOnlineUser();
+
+        //bind user email to header
+        bindUserEmail();
 
         //reset at the end of a day
         databaseUpdateReminder.buildDatabaseUpdateNotification();
@@ -109,6 +122,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             });
         }
 
+    }
+
+    private void bindUserEmail() {
+        String userEmail = authenticator.getCurrentUser();
+        navEmail.setText(userEmail);
     }
 
 
@@ -155,6 +173,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         this.navigationView = findViewById(R.id.navigatoin_view);
         this.authenticator = new Authenticator();
 
+        headerView = navigationView.getHeaderView(0);
+        navEmail = (TextView) headerView.findViewById(R.id.tv_header_email);
+
         userStorage = new UserStorage();
         sharedPref = getSharedPreferences("dailyGoal", MODE_PRIVATE);
         this.databaseUpdateReminder = new DatabaseUpdateReminder(MainActivity.this);
@@ -170,7 +191,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         else {
             super.onBackPressed();
         }
+
     }
+
+
+
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {

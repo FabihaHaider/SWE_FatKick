@@ -139,13 +139,11 @@ public class FinalGoalActivity extends AppCompatActivity {
                             Log.i("finalGoal", "onCallback: " + value);
                             if(value.equals("Goal saved successfully"))
                             {
-                                Log.i("finalGoal", "onCallback:  successful" + value);
                                 Intent intent = new Intent(FinalGoalActivity.this, MainActivity.class);
                                 startActivity(intent);
                             }
                             else
                             {
-                                Log.i("finalGoal", "onCallback:  not successful" + value);
                                 Toast.makeText(FinalGoalActivity.this, "Try again.", Toast.LENGTH_SHORT).show();
                             }
 

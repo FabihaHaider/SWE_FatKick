@@ -99,7 +99,6 @@ public class DailyTaskReminderController {
 
         return data;
     }
-
     private String getData()
     {
         StringBuilder stringBuilder = new StringBuilder();
