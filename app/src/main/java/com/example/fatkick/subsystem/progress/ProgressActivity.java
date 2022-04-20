@@ -57,7 +57,7 @@ public class ProgressActivity extends AppCompatActivity {
 
             private void showProgress(Double totalProgress, ProgressReport progressReport) {
 
-                overallProgress.setText("Overall Progress of Last "+ progressReport.getDays()+ " Days: "+String.format(".%2f",totalProgress)+"%");
+                overallProgress.setText("Overall Progress of Last "+ progressReport.getDays()+ " Days: "+String.format("%.2f",totalProgress)+"%");
                 calorieProgress.setText("Calorie Intake Progress: " + String.format("%.2f",progressReport.getCalorieIntakeProgress())+"%");
                 activityProgress.setText("Activity Progress: " + progressReport.getActivityProgress()+"%");
                 waterProgress.setText("Water Intake Progress: " + String.format("%.2f",progressReport.getWaterIntakeProgress())+"%");
