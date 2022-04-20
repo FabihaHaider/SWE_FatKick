@@ -1,80 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".subsystem.progress.ProgressActivity">
+    tools:context=".subsystem.progress.ProgressActivity"
+    android:orientation="vertical">
+
 
     <TextView
         android:id="@+id/tv_overallProgress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.146" />
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/tv_background"
+        android:text="No Progress Report Available"
+        android:textColor="@color/black"
+        android:gravity="center_vertical"
+        android:textSize="14sp"
+        android:paddingLeft="10dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackgroundBorderless">
+
+    </TextView>
 
     <TextView
         android:id="@+id/tv_calorieProgress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/tv_overallProgress"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/tv_overallProgress"
-        app:layout_constraintTop_toBottomOf="@+id/tv_overallProgress"
-        app:layout_constraintVertical_bias="0.064" />
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/tv_background"
+        android:text="No Calorie Intake Progress Available"
+        android:textColor="@color/black"
+        android:gravity="center_vertical"
+        android:textSize="14sp"
+        android:paddingLeft="10dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackgroundBorderless">
+
+    </TextView>
 
     <TextView
         android:id="@+id/tv_activityProgress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/tv_calorieProgress"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/tv_calorieProgress"
-        app:layout_constraintTop_toBottomOf="@+id/tv_calorieProgress"
-        app:layout_constraintVertical_bias="0.064" />
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/tv_background"
+        android:text="No Activity Progress Available"
+        android:textColor="@color/black"
+        android:gravity="center_vertical"
+        android:textSize="14sp"
+        android:paddingLeft="10dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackgroundBorderless">
+
+    </TextView>
 
     <TextView
         android:id="@+id/tv_waterProgress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/tv_activityProgress"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/tv_activityProgress"
-        app:layout_constraintTop_toBottomOf="@+id/tv_activityProgress"
-        app:layout_constraintVertical_bias="0.064" />
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/tv_background"
+        android:text="No Water Intake Progress Available"
+        android:textColor="@color/black"
+        android:gravity="center_vertical"
+        android:textSize="14sp"
+        android:paddingLeft="10dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackgroundBorderless">
+
+    </TextView>
+
 
     <TextView
         android:id="@+id/tv_sleepProgress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/tv_waterProgress"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/tv_waterProgress"
-        app:layout_constraintTop_toBottomOf="@+id/tv_waterProgress"
-        app:layout_constraintVertical_bias="0.064" />
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/tv_background"
+        android:text="No Sleep Progress Available"
+        android:textColor="@color/black"
+        android:gravity="center_vertical"
+        android:textSize="14sp"
+        android:paddingLeft="10dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackgroundBorderless">
+
+    </TextView>
+
 
     <TextView
         android:id="@+id/tv_meditationProgress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/tv_sleepProgress"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/tv_sleepProgress"
-        app:layout_constraintTop_toBottomOf="@+id/tv_sleepProgress"
-        app:layout_constraintVertical_bias="0.064" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/tv_background"
+        android:text="No Meditation Progress Available"
+        android:textColor="@color/black"
+        android:gravity="center_vertical"
+        android:textSize="14sp"
+        android:paddingLeft="10dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackgroundBorderless">
+
+    </TextView>
+
+
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>

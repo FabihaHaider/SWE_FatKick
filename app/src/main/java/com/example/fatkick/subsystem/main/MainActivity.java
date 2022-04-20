@@ -70,6 +70,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Log.i("output", "main activity opened");
 
 
         bindUI();
@@ -81,9 +82,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         //bind user email to header
         bindUserEmail();
 
-        //reset at the start of a day
-        autoReset();
-
+        //reset at the end of a day
         databaseUpdateReminder.buildDatabaseUpdateNotification();
 
 
@@ -113,7 +112,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     weight = user.getWeight();
                     activity_level = "level_2";
 
-                    Log.i("tuba", age.toString() + gender + height.toString() + weight.toString() + activity_level);
+                    Log.i("output", age.toString() + gender + height.toString() + weight.toString() + activity_level);
 
                     dailyActivityController.generateDailyActivity(age, gender, height, weight, activity_level);
                     dailyActivityController.setActivityCallback(MainActivity.this);
@@ -134,7 +133,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     ///api call synchronization
     @Override
     public void updateDailyActivity(@NonNull DailyActivity dailyActivity) {
-        Log.i("tuba", dailyActivity.getCalorieIntake().toString()+" from update");
+        Log.i("output", dailyActivity.getCalorieIntake().toString()+" "+dailyActivity.getActivityLevel()+" "+dailyActivity.getWaterIntake().toString()+" "+
+                dailyActivity.getSleep().toString()+" "+ dailyActivity.getMeditation().toString());
 
         MainActivity.this.runOnUiThread(new Runnable() {
             @Override
@@ -149,34 +149,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         });
 
     }
-
-    //reset at 11.59 pm
-    private void autoReset() {
-        Calendar cal = Calendar.getInstance();
-        cal.set(Calendar.HOUR_OF_DAY, 23);
-        cal.set(Calendar.MINUTE, 59);
-        cal.set(Calendar.SECOND, 0);
-
-        if(cal.after(Calendar.getInstance())){
-            long time= cal.getTimeInMillis();
-
-            AlarmManager am = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-
-            //creating a new intent specifying the broadcast receiver
-            Intent i = new Intent(this, ScheduleReset.class);
-
-
-            //creating a pending intent using the intent
-            PendingIntent pi = PendingIntent.getBroadcast(this, 0, i,0);
-
-            //setting the repeating alarm that will be fired every day
-            am.setRepeating(AlarmManager.RTC_WAKEUP, time, AlarmManager.INTERVAL_DAY, pi);
-            Log.i("tuba", "Alarm has set");
-
-        }
-
-    }
-
 
     private void isOnlineUser() {
         if(! authenticator.isActiveUser())

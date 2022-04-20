@@ -85,6 +85,10 @@ public class DailyActivity {
                 getExercise()[3].getDuration()*600/60;
 
         setCalorieIntake(getCalorieIntake()-burnt_cal);
+        getExercise()[0].setDuration(0.0);
+        getExercise()[1].setDuration(0.0);
+        getExercise()[2].setDuration(0.0);
+        getExercise()[3].setDuration(0.0);
     }
 
 }

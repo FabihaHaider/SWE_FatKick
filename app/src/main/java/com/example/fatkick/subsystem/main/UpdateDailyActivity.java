@@ -55,35 +55,50 @@ public class UpdateDailyActivity extends AppCompatActivity {
 
         saveButton.setOnClickListener( new View.OnClickListener() {
 
+            String sCalIntake, sWaterIntake, sActivityLevel, sSleep, sMeditation, sRunning, sWalking, sCycling, sSwimming;
+
             @Override
             public void onClick(View v) {
+                    readData();
+                    if(isAllFilled()){
+                        saveLocal();
+                        Toast.makeText(getApplicationContext(), "stored successfully.", Toast.LENGTH_LONG).show();
+                        finish();
 
-                saveLocal();
-                finish();
+                    }
+                    else{
+                        Toast.makeText(getApplicationContext(), "Please fill up all fields.", Toast.LENGTH_LONG).show();
 
+                    }
+
+
+            }
+
+            public void readData(){
+                sCalIntake = calorieIntake.getText().toString().trim();
+                sWaterIntake =waterIntake.getText().toString().trim();
+                sActivityLevel =spinnerActivityLevel.getSelectedItem().toString().trim();
+                sMeditation =meditation.getText().toString().trim();
+                sSleep =sleep.getText().toString().trim();
+
+                sSwimming =swimming.getText().toString().trim();
+                sRunning =running.getText().toString().trim();
+                sWalking =walking.getText().toString().trim();
+                sCycling =cycling.getText().toString().trim();
+
+            }
+
+            public boolean isAllFilled(){
+                if(sCalIntake.equals("")||sActivityLevel.equals("")||sWaterIntake.equals("")||sMeditation.equals("")||sSleep.equals("")
+                        ||sSwimming.equals("")||sRunning.equals("")||sWalking.equals("")||sCycling.equals("")) {
+                    return false;
+                }
+                else return  true;
 
             }
 
 
             private void saveLocal() {
-                String sCalIntake = calorieIntake.getText().toString().trim();
-                String sWaterIntake =waterIntake.getText().toString().trim();
-                String sActivityLevel =spinnerActivityLevel.getSelectedItem().toString().trim();
-                String sMeditation =meditation.getText().toString().trim();
-                String sSleep =sleep.getText().toString().trim();
-
-                String sSwimming =swimming.getText().toString().trim();
-                String sRunning =running.getText().toString().trim();
-                String sWalking =walking.getText().toString().trim();
-                String sCycling =cycling.getText().toString().trim();
-
-                if(sCalIntake.equals("")||sActivityLevel.equals("")||sWaterIntake.equals("")||sMeditation.equals("")||sSleep.equals("")
-                        ||sSwimming.equals("")||sRunning.equals("")||sWalking.equals("")||sCycling.equals("")) {
-
-                    Toast.makeText(getApplicationContext(), "Please fill up all fields.", Toast.LENGTH_LONG).show();
-                }
-
-                else{
                     //step count activity
                     float time=0;
                     if(stepCheckout.isChecked()){
@@ -116,7 +131,7 @@ public class UpdateDailyActivity extends AppCompatActivity {
                     dailyActivityStorage.storeData();
 
 
-                }
+
             }
 
         });
