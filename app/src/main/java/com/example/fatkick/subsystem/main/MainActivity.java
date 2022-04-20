@@ -101,7 +101,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     weight = user.getWeight();
                     activity_level = "level_2";
 
-                    Log.i("tuba", age.toString() + gender + height.toString() + weight.toString() + activity_level);
+                    Log.i("output", age.toString() + gender + height.toString() + weight.toString() + activity_level);
 
                     dailyActivityController.generateDailyActivity(age, gender, height, weight, activity_level);
                     dailyActivityController.setActivityCallback(MainActivity.this);
@@ -117,7 +117,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     ///api call synchronization
     @Override
     public void updateDailyActivity(@NonNull DailyActivity dailyActivity) {
-        Log.i("tuba", dailyActivity.getCalorieIntake().toString()+" from update");
+        Log.i("output", dailyActivity.getCalorieIntake().toString()+" "+dailyActivity.getActivityLevel()+" "+dailyActivity.getWaterIntake().toString()+" "+
+                dailyActivity.getSleep().toString()+" "+ dailyActivity.getMeditation().toString());
 
         MainActivity.this.runOnUiThread(new Runnable() {
             @Override
@@ -154,7 +155,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             //setting the repeating alarm that will be fired every day
             am.setRepeating(AlarmManager.RTC_WAKEUP, time, AlarmManager.INTERVAL_DAY, pi);
-            Log.i("tuba", "Alarm has set");
+            //Log.i("tuba", "Alarm has set");
 
         }
 

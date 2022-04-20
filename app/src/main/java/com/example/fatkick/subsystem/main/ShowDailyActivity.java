@@ -19,10 +19,6 @@ import java.text.ParseException;
 
 public class ShowDailyActivity extends AppCompatActivity {
 
-
-    private Authenticator authenticator;
-    private UserStorage userStorage;
-
     DailyActivityStorage dailyActivityStorage;
     SharedPreferences sharedPref;
     DailyActivity dailyActivity;

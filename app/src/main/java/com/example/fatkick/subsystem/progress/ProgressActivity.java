@@ -21,7 +21,6 @@ public class ProgressActivity extends AppCompatActivity {
     ProgressController progressController;
     ProgressReport progressReport;
     ProgressStorage progressStorage;
-    SharedPreferences sp;
 
     TextView calorieProgress;
     TextView waterProgress;
@@ -29,7 +28,6 @@ public class ProgressActivity extends AppCompatActivity {
     TextView activityProgress;
     TextView meditationProgress;
     TextView overallProgress;
-    int days=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,27 +36,6 @@ public class ProgressActivity extends AppCompatActivity {
 
         bindUI();
 
-
-        dailyActivityStorage = new DailyActivityStorage(getSharedPreferences("dailyGoal", MODE_PRIVATE), dailyGoal);
-        dailyActivityStorage.loadData();
-        dailyGoal = dailyActivityStorage.getDailyActivity();
-
-        //dailyActivity->daily completed activity
-        dailyActivityStorage = new DailyActivityStorage(getSharedPreferences("dailyActivity", MODE_PRIVATE), dailyCompletedActivity);
-        dailyActivityStorage.loadData();
-        dailyCompletedActivity = dailyActivityStorage.getDailyActivity();
-        dailyCompletedActivity.calculateNetCal();
-
-        progressController = new ProgressController(dailyGoal, dailyCompletedActivity);
-        progressController.calculateProgress();
-
-        progressReport = new ProgressReport();
-        progressReport = progressController.getDailyProgressReport();
-
-        ///save progress
-        progressStorage = new ProgressStorage(FirebaseAuth.getInstance().getCurrentUser().getEmail(), progressReport);
-        Log.i("tuba", "progress storage created");
-        progressStorage.storeProgress();
 
         //retrieve progress
         progressStorage.readProgress(new ProgressInterface() {
@@ -80,12 +57,12 @@ public class ProgressActivity extends AppCompatActivity {
 
             private void showProgress(Double totalProgress, ProgressReport progressReport) {
 
-                overallProgress.setText("Overall Progress of Last "+ progressReport.getDays()+ " Days: "+totalProgress+ "%");
-                calorieProgress.setText("Calorie Intake Progress: " + progressReport.getCalorieIntakeProgress()+"%");
+                overallProgress.setText("Overall Progress of Last "+ progressReport.getDays()+ " Days: "+String.format(".%2f",totalProgress)+"%");
+                calorieProgress.setText("Calorie Intake Progress: " + String.format("%.2f",progressReport.getCalorieIntakeProgress())+"%");
                 activityProgress.setText("Activity Progress: " + progressReport.getActivityProgress()+"%");
-                waterProgress.setText("Water Intake Progress: " + progressReport.getWaterIntakeProgress()+"%");
-                sleepProgress.setText("Sleep Progress: " + progressReport.getSleepProgress()+"%");
-                meditationProgress.setText("Meditation Progress: " + progressReport.getMeditationProgress()+"%");
+                waterProgress.setText("Water Intake Progress: " + String.format("%.2f",progressReport.getWaterIntakeProgress())+"%");
+                sleepProgress.setText("Sleep Progress: " + String.format("%.2f",progressReport.getSleepProgress())+"%");
+                meditationProgress.setText("Meditation Progress: " + String.format("%.2f",progressReport.getMeditationProgress())+"%");
             }
         });
 
@@ -106,5 +83,6 @@ public class ProgressActivity extends AppCompatActivity {
 
         dailyGoal = new DailyActivity();
         dailyCompletedActivity = new DailyActivity();
+        progressStorage = new ProgressStorage(FirebaseAuth.getInstance().getCurrentUser().getEmail(), new ProgressReport());
     }
 }

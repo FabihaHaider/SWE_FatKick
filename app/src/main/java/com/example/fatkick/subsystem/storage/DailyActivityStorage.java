@@ -74,4 +74,18 @@ public class DailyActivityStorage {
         dailyActivity.setSleep((double) sharedPref.getFloat("sleep", 0.0F));
 
     }
+
+    public void resetDailyActivity(){
+        dailyActivity.setCalorieIntake(0.0);
+        dailyActivity.setActivityLevel("0%");
+        dailyActivity.setWaterIntake(0.0);
+        dailyActivity.setMeditation(0.0);
+        dailyActivity.setSleep(0.0);
+
+        dailyActivity.getExercise()[0].setDuration(0.0);
+        dailyActivity.getExercise()[1].setDuration(0.0);
+        dailyActivity.getExercise()[2].setDuration(0.0);
+        dailyActivity.getExercise()[3].setDuration(0.0);
+
+    }
 }

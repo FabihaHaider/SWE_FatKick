@@ -19,13 +19,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.fatkick.R;
+import com.example.fatkick.subsystem.storage.StepCountStorage;
 
 import java.util.Calendar;
 
 public class StepCountActivity extends AppCompatActivity implements SensorEventListener {
 
     SensorManager sensorManager;
-    static SharedPreferences sharedpreferences;
+    SharedPreferences sharedpreferences;
+    StepCountStorage stepCountStorage;
     Boolean running= false;
     float totalSteps= 0.0F;
     float prevTotalSteps= 0.0F;
@@ -40,13 +42,17 @@ public class StepCountActivity extends AppCompatActivity implements SensorEventL
         bindUI();
 
 
-        loadData();
+        //loadData
+        stepCountStorage.loadSteps();
+        Log.i("tuba", "stCnt"+ stepCountStorage.getPrevCount() + " "+ stepCountStorage.getTotalCount());
+        prevTotalSteps = stepCountStorage.getPrevCount();
 
         //reset through button
         btReset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                resetSteps();
+                stepCountStorage.resetSteps();
+                tvSteps.setText("0");
             }
         });
 
@@ -61,6 +67,7 @@ public class StepCountActivity extends AppCompatActivity implements SensorEventL
 
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         sharedpreferences = getSharedPreferences("myPref", Context.MODE_PRIVATE);
+        stepCountStorage = new StepCountStorage(sharedpreferences);
     }
 
 
@@ -88,14 +95,15 @@ public class StepCountActivity extends AppCompatActivity implements SensorEventL
     public void onSensorChanged(SensorEvent sensorEvent) {
         if (running){
             totalSteps = sensorEvent.values[0];
-            loadData();
+            //loadData;
+            stepCountStorage.loadSteps();
+            prevTotalSteps = stepCountStorage.getPrevCount();
             int currentSteps= (int) (totalSteps - prevTotalSteps);
             tvSteps.setText(Integer.toString(currentSteps));
 
             //save data for totalSteps
-            SharedPreferences.Editor editor = sharedpreferences.edit();
-            editor.putFloat("key2", totalSteps);
-            editor.apply();
+            stepCountStorage.setTotalCount(totalSteps);
+            stepCountStorage.saveTotalSteps();
         }
     }
 
@@ -104,26 +112,4 @@ public class StepCountActivity extends AppCompatActivity implements SensorEventL
 
     }
 
-
-
-    public void resetSteps(){
-        prevTotalSteps = totalSteps;
-        saveData();
-        tvSteps.setText("0");
-
-    }
-
-
-
-    public void saveData(){
-        SharedPreferences.Editor editor = sharedpreferences.edit();
-        editor.putFloat("key1", prevTotalSteps);  //key1 is for prev total step, key2 is for currentSteps
-        editor.apply();
-    }
-
-    public void loadData(){
-        float savedData = sharedpreferences.getFloat("key1", 0);
-        prevTotalSteps = savedData;
-
-    }
 }
